@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Administrador — Gas El Volcán</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="admin-body">
+
+  <div class="admin-wrapper">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">Gas <span>El Volcán</span><br><small>Panel interno</small></div>
+      <nav id="admin-menu" class="admin-nav"></nav>
+      <div class="admin-sidebar-footer">
+        <div id="admin-usuario-actual" class="small text-white-50 mb-2"></div>
+        <a href="../index.html" class="btn btn-outline-light btn-sm w-100 mb-2">Ver tienda</a>
+        <button id="btn-cerrar-sesion-admin" class="btn btn-outline-light btn-sm w-100">Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <main class="admin-content">
+      <h1 class="h3">¡Hola, <span id="saludo-nombre"></span>!</h1>
+      <p class="text-secondary">Este es tu panel de administración de Gas El Volcán.</p>
+
+      <div class="row g-3 mt-2">
+        <div class="col-sm-6 col-lg-3">
+          <div class="card border-0 shadow-sm p-3">
+            <span class="text-secondary small">Productos</span>
+            <span id="kpi-productos" class="fs-3 fw-bold">0</span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="card border-0 shadow-sm p-3">
+            <span class="text-secondary small">Con stock crítico</span>
+            <span id="kpi-stock-critico" class="fs-3 fw-bold text-danger">0</span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3" id="tarjeta-usuarios">
+          <div class="card border-0 shadow-sm p-3">
+            <span class="text-secondary small">Usuarios registrados</span>
+            <span id="kpi-usuarios" class="fs-3 fw-bold">0</span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="card border-0 shadow-sm p-3">
+            <span class="text-secondary small">Pedidos confirmados</span>
+            <span id="kpi-pedidos" class="fs-3 fw-bold">0</span>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/validaciones.js"></script>
+  <script src="../js/admin/admin-ui.js"></script>
+  <script src="../js/admin/admin-home.js"></script>
+</body>
+</html>

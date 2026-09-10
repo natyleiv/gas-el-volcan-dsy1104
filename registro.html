@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear cuenta — Gas El Volcán</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-volcan fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><i class="bi bi-fire"></i>Gas <span>El Volcán</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="catalogo.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-3">
+          <a href="carrito.html" class="btn btn-outline-light position-relative">
+            <i class="bi bi-cart3"></i>
+            <span id="contador-carrito" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-flame">0</span>
+          </a>
+          <div id="zona-sesion" class="d-flex align-items-center gap-2"></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-5">
+    <div class="container d-flex justify-content-center">
+      <div class="card border-0 shadow-sm p-4" style="max-width: 680px; width: 100%;">
+        <h1 class="h3">Crea tu cuenta</h1>
+        <p class="text-secondary">Regístrate para comenzar a pedir tu gas en línea.</p>
+        <div id="mensaje-registro" class="alert d-none" role="alert"></div>
+
+        <form id="form-registro" novalidate>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="run" class="form-label">RUN <span class="text-secondary small">(sin puntos ni guion, ej: 19011022K)</span></label>
+              <input type="text" class="form-control" id="run" maxlength="9" placeholder="190110222">
+              <div class="invalid-feedback" id="run-feedback"></div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="telefono" class="form-label">Teléfono <span class="text-secondary small">(opcional)</span></label>
+              <input type="tel" class="form-control" id="telefono" placeholder="+56 9 1234 5678">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" maxlength="50">
+              <div class="invalid-feedback" id="nombre-feedback"></div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="apellidos" class="form-label">Apellidos</label>
+              <input type="text" class="form-control" id="apellidos" maxlength="100">
+              <div class="invalid-feedback" id="apellidos-feedback"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="correo" class="form-label">Correo institucional</label>
+              <input type="email" class="form-control" id="correo" maxlength="100" placeholder="nombre@duoc.cl">
+              <div class="form-text">Solo se aceptan correos @duoc.cl para crear una cuenta.</div>
+              <div class="invalid-feedback" id="correo-feedback"></div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="fecha-nacimiento" class="form-label">Fecha de nacimiento</label>
+              <input type="date" class="form-control" id="fecha-nacimiento">
+              <div class="form-text">Debes tener al menos 14 años para registrarte.</div>
+              <div class="invalid-feedback" id="fecha-nacimiento-feedback"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="password" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="password" maxlength="10">
+              <div class="form-text">Entre 4 y 10 caracteres.</div>
+              <div class="invalid-feedback" id="password-feedback"></div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="confirmar-password" class="form-label">Confirmar contraseña</label>
+              <input type="password" class="form-control" id="confirmar-password" maxlength="10">
+              <div class="invalid-feedback" id="confirmar-password-feedback"></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="region" class="form-label">Región</label>
+              <select id="region" class="form-select">
+                <option value="">Selecciona tu región</option>
+              </select>
+              <div class="invalid-feedback" id="region-feedback"></div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="comuna" class="form-label">Comuna</label>
+              <select id="comuna" class="form-select" disabled>
+                <option value="">Selecciona primero tu región</option>
+              </select>
+              <div class="invalid-feedback" id="comuna-feedback"></div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección</label>
+            <input type="text" class="form-control" id="direccion" maxlength="300">
+            <div class="invalid-feedback" id="direccion-feedback"></div>
+          </div>
+
+          <div class="form-check mb-3">
+            <input type="checkbox" class="form-check-input" id="terminos">
+            <label class="form-check-label" for="terminos">
+              Acepto las <a href="#" data-bs-toggle="modal" data-bs-target="#modalTerminos">condiciones de registro</a>.
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-flame w-100">Crear cuenta</button>
+          <p class="text-center text-secondary small mt-3 mb-0">
+            ¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <div class="modal fade" id="modalTerminos" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5">Condiciones de registro</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p>Al registrarte en Gas El Volcán aceptas el uso responsable de la plataforma, el tratamiento de
+            tus datos personales conforme a la normativa vigente, y nuestra política de despacho y cambios.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-volcan py-4">
+    <div class="container small d-flex flex-wrap justify-content-between gap-2">
+      <div>
+        <strong>Equipo Gas El Volcán Devs</strong><br>
+        Integrantes: Juan Pablo Marambio Zagal · Natalia Millaray Leiva Millaqueo<br>
+        Asignatura DSY1104 — 2026 · Caso "Distribuidora de Gas El Volcán" (Forma C) · © <span id="anio-actual"></span>
+      </div>
+      <div class="align-self-end">
+        <a href="login.html" class="link-light small">Acceso personal interno</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="aviso-flotante" class="alert d-none" role="alert"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/validaciones.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/registro.js"></script>
+</body>
+</html>

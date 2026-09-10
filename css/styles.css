@@ -1,0 +1,416 @@
+/* ============================================================
+   styles.css — Gas El Volcán
+   Ajustes propios sobre Bootstrap 5 (cargado por CDN antes que
+   esta hoja, tal como se explicó en clases: "nuestro CSS debe
+   estar después de la importación de Bootstrap").
+
+   Paleta: azul "cilindro de gas" + naranja "llama", con Poppins
+   para los títulos (se importa desde Google Fonts en el <head>
+   de cada página) y la fuente normal del sistema para el texto,
+   porque se lee más rápido en párrafos largos.
+   ============================================================ */
+
+:root {
+  --azul-volcan: #0b5fa5;
+  --azul-volcan-oscuro: #073d6b;
+  --naranja-llama: #f7931e;
+  --naranja-llama-oscuro: #d97b0d;
+  --gris-fondo: #f6f7fb;
+  --gris-texto: #4a5568;
+  --radio-borde: 0.85rem;
+  --sombra-suave: 0 0.5rem 1.25rem rgba(7, 61, 107, 0.1);
+}
+
+body {
+  background-color: var(--gris-fondo);
+  padding-top: 4.5rem;
+  color: #26313f;
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: var(--naranja-llama);
+  color: #1a1a1a;
+}
+
+/* Los títulos usan Poppins para que la marca se sienta distinta
+   de un sitio hecho solo con la tipografía por defecto */
+h1, h2, h3, h4, h5,
+.navbar-brand, .admin-brand, .btn, .display-6 {
+  font-family: "Poppins", "Segoe UI", sans-serif;
+}
+
+h2 {
+  font-weight: 700;
+  color: var(--azul-volcan-oscuro);
+}
+
+/* Redondeamos un poco los controles, como se vio en clases */
+.form-control,
+.form-select,
+.btn {
+  border-radius: 0.6rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--azul-volcan);
+  box-shadow: 0 0 0 0.25rem rgba(11, 95, 165, 0.25);
+}
+
+/* ---------- Navbar ---------- */
+.navbar-volcan {
+  background-color: var(--azul-volcan-oscuro);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-volcan .navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.navbar-volcan .navbar-brand .bi-fire {
+  color: var(--naranja-llama);
+  margin-right: 0.4rem;
+}
+
+.navbar-volcan .navbar-brand span {
+  color: var(--naranja-llama);
+}
+
+.navbar-volcan .nav-link {
+  color: rgba(255, 255, 255, 0.85);
+  position: relative;
+}
+
+/* Al pasar el mouse, crece una línea naranja bajo el link.
+   Es solo un ::after con "width" animado, sin JavaScript. */
+.navbar-volcan .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: var(--naranja-llama);
+  transition: width 0.2s ease;
+}
+
+.navbar-volcan .nav-link:hover::after,
+.navbar-volcan .nav-link.active::after {
+  width: 100%;
+}
+
+.navbar-volcan .nav-link.active,
+.navbar-volcan .nav-link:hover {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.carrito-icono {
+  position: relative;
+  color: #ffffff;
+  font-size: 1.3rem;
+}
+
+#contador-carrito {
+  font-size: 0.65rem;
+}
+
+/* ---------- Botón de marca (naranja llama) ---------- */
+.btn-flame {
+  background-color: var(--naranja-llama);
+  border-color: var(--naranja-llama);
+  color: #1a1a1a;
+  font-weight: 600;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-flame:hover:not(:disabled) {
+  background-color: var(--naranja-llama-oscuro);
+  border-color: var(--naranja-llama-oscuro);
+  color: #ffffff;
+  box-shadow: 0 0.4rem 0.9rem rgba(217, 123, 13, 0.35);
+}
+
+.btn-flame:disabled {
+  background-color: #e0e0e0;
+  border-color: #e0e0e0;
+  color: #8a8a8a;
+}
+
+.bg-flame {
+  background-color: var(--naranja-llama) !important;
+  color: #1a1a1a;
+}
+
+/* ---------- Hero ----------
+   Degradado azul + una "textura" de círculos muy sutil, para que
+   no se vea como un rectángulo de color plano. Es solo un
+   background con gradientes radiales, no una imagen aparte. */
+.hero-volcan {
+  background:
+    radial-gradient(circle at 85% 20%, rgba(247, 147, 30, 0.18) 0%, transparent 45%),
+    linear-gradient(135deg, var(--azul-volcan) 0%, var(--azul-volcan-oscuro) 100%);
+  color: #ffffff;
+  padding: 4rem 0 3.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Icono decorativo gigante y semi-transparente, solo de fondo.
+   Es puro CSS (posicionamiento absoluto + opacidad), no una imagen aparte. */
+.hero-icono-fondo {
+  position: absolute;
+  right: -1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16rem;
+  color: rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+@media (max-width: 991px) {
+  .hero-icono-fondo { display: none; }
+}
+
+.hero-volcan h1 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.hero-volcan h1 span {
+  color: var(--naranja-llama);
+}
+
+.hero-volcan .lead {
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 42rem;
+}
+
+/* ---------- Franja de confianza (debajo del hero) ---------- */
+.trust-strip {
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+}
+
+.trust-item i {
+  font-size: 1.4rem;
+  color: var(--naranja-llama);
+  flex-shrink: 0;
+}
+
+/* ---------- Tarjetas de producto ---------- */
+.producto-card {
+  border: 1px solid rgba(7, 61, 107, 0.08);
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-suave);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.producto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.9rem 1.75rem rgba(11, 95, 165, 0.18) !important;
+}
+
+.producto-img-wrap {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: #eef2f6;
+  border-radius: var(--radio-borde) var(--radio-borde) 0 0;
+}
+
+.producto-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.producto-card:hover .producto-img {
+  transform: scale(1.04);
+}
+
+.producto-precio {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: var(--azul-volcan-oscuro);
+  font-size: 1.15rem;
+}
+
+/* Píldora de categoría, más "de tienda" que un texto plano */
+.badge-categoria {
+  display: inline-block;
+  background-color: rgba(11, 95, 165, 0.1);
+  color: var(--azul-volcan-oscuro);
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+}
+
+/* ---------- Sección Quiénes somos ---------- */
+.equipo-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--azul-volcan);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  margin: 0 auto 0.6rem;
+}
+
+/* ---------- Detalle de producto ---------- */
+.detalle-img-wrap {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background-color: #eef2f6;
+}
+
+.detalle-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Carrito ---------- */
+.carrito-img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+}
+
+/* ---------- Aviso flotante ---------- */
+#aviso-flotante {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 1080;
+  min-width: 260px;
+  max-width: 360px;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+
+/* ---------- Footer ---------- */
+.footer-volcan {
+  background-color: var(--azul-volcan-oscuro);
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 3rem;
+  border-top: 3px solid var(--naranja-llama);
+}
+
+.footer-volcan strong {
+  color: #ffffff;
+}
+
+.footer-volcan a {
+  color: var(--naranja-llama);
+}
+
+/* ============================================================
+   PANEL ADMINISTRADOR
+   ============================================================ */
+body.admin-body {
+  padding-top: 0;
+}
+
+.admin-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background-color: var(--azul-volcan-oscuro);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1rem;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.admin-brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+.admin-brand span { color: var(--naranja-llama); }
+.admin-brand small { font-weight: 400; color: rgba(255,255,255,0.7); }
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.admin-nav-link {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.admin-nav-link:hover {
+  background-color: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+.admin-nav-link.active {
+  background-color: var(--naranja-llama);
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.admin-sidebar-footer {
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.admin-content {
+  flex: 1;
+  padding: 2rem;
+  background-color: var(--gris-fondo);
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .admin-wrapper { flex-direction: column; }
+  .admin-sidebar { width: 100%; height: auto; position: relative; flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .admin-nav { flex-direction: row; flex-wrap: wrap; }
+  .admin-sidebar-footer { border-top: none; margin-top: 0; padding-top: 0; margin-left: auto; }
+}
+
+.stock-critico {
+  color: var(--naranja-llama-oscuro);
+  font-weight: 600;
+}
+
+.blog-img {
+  width: 220px;
+  min-width: 220px;
+  object-fit: cover;
+}
+@media (max-width: 767px) {
+  .blog-img { width: 100%; height: 180px; }
+}
